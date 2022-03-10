@@ -1,18 +1,20 @@
 import React from 'react';
 import BaseLogin from './BaseLogin';
 import {connect} from 'react-redux';
-import * as action from '../../sotore/action';
+import * as actions from '../../store/actions';
 
 const baseLogin = Component => {
     class ComponentBaseLogin extends React.Component{
 
         componentDidMount(){
-            const {logado} = this.props;
-            console.log(logado);
+            const {logado, getUser, history} = this.props;
+            getUser();
+            if(logado) return history.replace("/dashboard");
         }
 
         componentDidUpdate(nextProps){
-            console.log(nextProps);
+            const {history} = this.props;
+            if( !nextProps.logado) return history.replace("/dashboard");
         }
         
         render(){
@@ -29,7 +31,7 @@ const baseLogin = Component => {
         usuario: state.auth.usuario
     });
 
-    return connect(mapStateToProps, action)(ComponentBaseLogin);
+    return connect(mapStateToProps, actions)(ComponentBaseLogin);
 }
 
 export default baseLogin;

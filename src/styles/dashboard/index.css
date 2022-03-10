@@ -1,8 +1,11 @@
 body {
-    background-color: #eaeef3;
+    background-color: #eaeef3 !important;
 }
 .menu-header{
     color: #FFF !important;
+}
+.header-logo{
+    flex-direction: row !important;
 }
 .sidebar{
     background-color: #222c3c;

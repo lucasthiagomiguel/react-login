@@ -1,58 +1,85 @@
 import React, { Component } from 'react';
-import { Form, FormGroup,Label,Input, Button } from 'reactstrap';
-import { connect } from 'react-redux';
-import * as actions from '../../sotore/action';
-import AlerDanger from '../../components/Header/AlertaDanger';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
-class Login extends Component{
+import AlertDanger from '../../components/AlertDanger';
+
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions';
+
+class Login extends Component {
+
     state = {
         email: "",
         senha: "",
-        erro:""
+        erro: ""
     }
-    onChangeInput = (field, ev) =>{
-        this.setState({[field]: ev.target.value})
-    }
-    handleLogin(){
-        const {email,senha} = this.state;
-       if(!this.validade()) return;
-        this.props.handleLogin({email,senha},(err)=>{
 
-        });
-
+    onChangeInput = (field, ev) => {
+        this.setState({ [field]: ev.target.value });
     }
-    validade(){
-        const { email, senha} = this.state;
-        if(!email) return  this.setState({erro:"campo vazio"})
-        if(!senha) return  this.setState({erro: "campo vazio"})
+
+    handleLogin() {
+        const { email, senha } = this.state;
+
+        if (!this.validade()) return;
+        this.props.handleLogin({ email, senha }, (err) => {
+            //console.log(err);
+            this.setState({erro: {message: err.erro.message}});
+        })
+    }
+
+    validade() {
+        const { email, senha } = this.state;
+
+        if (!email) return this.setState({ erro: { message: "Preencha o campo e-mail!" }})
+        if (!senha) return this.setState({ erro: {message: "Preencha o campo senha!" }})
+
         return true;
     }
-    render(){ 
-        const {email,senha,erro} = this.state;  
-        return(
-            <>
-            <div className="container-login">
-                <div className="login card shadow">
-                    <Form className="form-signin text-center">
-                        <h1>Login </h1>
-                        <AlerDanger erros={erro} />
-                        <FormGroup>
-                            <Label for='email'>Usuario</Label>
-                            <Input type='email' id='email' placeholder='E-mail do usuário' value={email} onChange={(ev) => this.onChangeInput("email", ev)} />
-                        </FormGroup>
-                        
-                        <FormGroup>
-                            <Label for='senha'>Senha </Label>
-                            <Input type='password' id='senha' placeholder='senha ' value={senha} onChange={(ev) => this.onChangeInput("senha", ev)}/>
-                        </FormGroup>
 
-                        <Button color='primary btn-block' onClick={() => this.handleLogin()}>Acessar</Button>
-                    </Form>
-                </div>
+    render() {
+        const { email, senha, erro } = this.state;
+        return (
+            <>
+
+                <div className="container-login">
+                    <div className="login card shadow">
+                        <Form className="form-signin text-center">
+                            <h1 className="h3 mb-3 font-weight-normal">Login</h1>
+                            <AlertDanger erros={erro} />
+                            <FormGroup>
+                                <Label for="email">Usuário</Label>
+                                <Input
+                                    type="email"
+                                    value={email}
+                                    name="email"
+                                    id="email"
+                                    placeholder="E-mail do usuário"
+                                    onChange={(ev) => this.onChangeInput("email", ev)} />
+                            </FormGroup>
+
+                            <FormGroup>
+                                <Label for="senha">Senha</Label>
+                                <Input
+                                    type="senha"
+                                    value={senha}
+                                    name="senha"
+                                    id="senha"
+                                    placeholder="Senha do usuário"
+                                    onChange={(ev) => this.onChangeInput("senha", ev)} />
+                            </FormGroup>
+
+                            <Button
+                                color="primary btn-block"
+                                size="lg"
+                                onClick={() => this.handleLogin()}>Acessar</Button>
+                           
+                        </Form>
+                    </div>
                 </div>
             </>
         )
     }
-    
 }
-export default connect(null,actions) (Login);
+
+export default connect(null, actions)(Login);

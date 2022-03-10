@@ -1,23 +1,34 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import history from '../history';
-import PrivateRoute from './PrivateRoute';
+import { BrowserRouter, Router, Switch, Route } from 'react-router-dom';
+
+import { Provider } from 'react-redux';
+import store from '../store/store'
+
+import { history } from '../history';
+
 import Login from '../pages/Login';
+import RecuperarSenha from '../pages/RecuperarSenha';
 import Dashboard from '../pages/Dashboard';
+import Perfil from '../pages/Perfil';
+import User from '../pages/User';
+
 import baseLogin from '../containers/login';
 import baseDashboard from '../containers/dashboard';
-import { Provider } from 'react-redux';
-import store from '../sotore/store';
 
-export default function Routes(){
-    return(
+export default function Routes() {
+    return (
         <Provider store={store}>
-            <BrowserRouter history={history}>
+            <Router history={history}>
+            <BrowserRouter>
                 <Switch>
                     <Route path="/" exact component={baseLogin(Login)} />
-                    <PrivateRoute path="/dashboard" exact component={baseDashboard(Dashboard)} />
+                    <Route path="/recuperar-senha" exact component={baseLogin(RecuperarSenha)} />
+                    <Route path="/dashboard" exact component={baseDashboard(Dashboard)} />
+                    <Route path="/perfil" exact component={baseDashboard(Perfil)} />
+                    <Route path="/user" exact component={baseDashboard(User)} />
                 </Switch>
             </BrowserRouter>
+            </Router>
         </Provider>
     );
 }

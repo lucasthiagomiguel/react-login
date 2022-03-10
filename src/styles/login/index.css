@@ -12,9 +12,9 @@
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-  padding-top: 241px;
+  padding-top: 280px;
   padding-bottom: 40px;
-  background-color: #fff;
+  background-color: #eaeef3;
 }
 
 .form-signin {
@@ -41,15 +41,12 @@
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.form-signin input[type="password"] {
+.form-signin input[type="senha"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-.form-signin button{
-    width: 100%;
-}
-@media all and (min-width:480px){
+@media all and (min-width: 480px){
     .login{
         padding: 10px 0;
         width: 350px;
