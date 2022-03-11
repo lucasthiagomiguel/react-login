@@ -2,9 +2,8 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { Navbar, Nav, NavItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Navbar, Nav, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
-import iconeUsuario from '../../assets/icone_usuario.png';
 
 const Header = ({handleLogout, dadosUsuario}) => {
     var firstName = "Usuário";
@@ -19,15 +18,11 @@ const Header = ({handleLogout, dadosUsuario}) => {
     <Navbar color="primary navbar-dark" light expand="md">
         <Link className="navbar-brand" to="/dashboard">Lucas</Link>
         <Nav className="ml-auto header-logo" navbar>
-            <NavItem className="mr-1">
-                <img className="rounded-circle mt-2" src={dadosUsuario.children.props.usuario ? dadosUsuario.children.props.usuario.url : {iconeUsuario}} width="20" height="20" alt={firstName} />
-            </NavItem>
             <UncontrolledDropdown setActiveFromChild>
                 <DropdownToggle tag="a" className="nav-link menu-header" caret>
                     {firstName}
                 </DropdownToggle>
                 <DropdownMenu right>
-                    <Link className="dropdown-item" to="/perfil">Perfil</Link>
                     <DropdownItem onClick={() => handleLogout()}>Sair</DropdownItem>
                 </DropdownMenu>
             </UncontrolledDropdown>

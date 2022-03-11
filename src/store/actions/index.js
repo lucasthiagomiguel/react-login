@@ -17,12 +17,12 @@ export const handleLogin = ({ email, senha }, callback) => {
     }
 }
 
-export const getUser = () => {
+export const getUser = (pageAtual) => {
     return function (dispatch) {
         if (getToken()) {
-            axios.get(api + '/perfil', getHeaders())
+            axios.get(api + `/star/${pageAtual}`, getHeaders())
                 .then((response) => {
-                    //console.log(response.data);
+                    console.log(response.data);
                     saveToke(response.data);
                     dispatch({ type: LOGIN_USER, payload: response.data });
                 })

@@ -9,7 +9,6 @@ import { history } from '../history';
 import Login from '../pages/Login';
 import RecuperarSenha from '../pages/RecuperarSenha';
 import Dashboard from '../pages/Dashboard';
-import Perfil from '../pages/Perfil';
 import User from '../pages/User';
 
 import baseLogin from '../containers/login';
@@ -24,7 +23,6 @@ export default function Routes() {
                     <Route path="/" exact component={baseLogin(Login)} />
                     <Route path="/recuperar-senha" exact component={baseLogin(RecuperarSenha)} />
                     <Route path="/dashboard" exact component={baseDashboard(Dashboard)} />
-                    <Route path="/perfil" exact component={baseDashboard(Perfil)} />
                     <Route path="/user" exact component={baseDashboard(User)} />
                 </Switch>
             </BrowserRouter>

@@ -8,8 +8,8 @@ const baseDashboard = Component => {
 
 
         componentDidMount(){
-            const {logado, getUser, history} = this.props;
-            getUser();
+            const {logado, history} = this.props;
+            
 
             if(!logado){
                 return history.replace("/");

@@ -61,7 +61,7 @@ class Login extends Component {
                             <FormGroup>
                                 <Label for="senha">Senha</Label>
                                 <Input
-                                    type="senha"
+                                    type="password"
                                     value={senha}
                                     name="senha"
                                     id="senha"

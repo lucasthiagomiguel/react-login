@@ -4,10 +4,9 @@ import { api } from '../../config';
 import { getHeaders } from './localStorage';
 import errorHandling from './errorHandling';
 
-export const getUsers = (pageAtual) => {
+export const getUsers = () => {
     return function (dispatch) {
-        console.log(api + `/star/page=${pageAtual}`);
-        axios.get(api + `/star/page=${pageAtual}`, getHeaders())
+        axios.get(api + `/star`, getHeaders())
         .then((response) => {
             dispatch({type: GET_USERS, payload: response.data});
         })
