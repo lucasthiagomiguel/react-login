@@ -9,6 +9,8 @@ import * as actions from '../../store/actions';
 class Login extends Component {
 
     state = {
+        name:"",
+        telefone:"",
         email: "",
         senha: "",
         erro: ""
@@ -18,11 +20,11 @@ class Login extends Component {
         this.setState({ [field]: ev.target.value });
     }
 
-    handleLogin() {
-        const { email, senha } = this.state;
+    handleCadastrar() {
+        const {name,telefone, email, senha } = this.state;
 
         if (!this.validade()) return;
-        this.props.handleLogin({ email, senha }, (err) => {
+        this.props.handleCadastrar({ name,telefone, email, senha  }, (err) => {
             //console.log(err);
             this.setState({erro: {message: err.erro.message}});
         })
@@ -38,17 +40,37 @@ class Login extends Component {
     }
 
     render() {
-        const { email, senha, erro } = this.state;
+        const {name,telefone, email, senha, erro } = this.state;
         return (
             <>
 
                 <div className="container-form">
                     <div className="login card shadow">
                         <Form className="form-signin text-center">
-                            <h1 className="h3 mb-3 font-weight-normal">Login</h1>
+                            <h1 className="h3 mb-3 font-weight-normal">Cadastrar</h1>
                             <AlertDanger erros={erro} />
                             <FormGroup>
-                                <Label for="email">Usuário</Label>
+                                <Label for="name">Nome</Label>
+                                <Input
+                                    type="text"
+                                    value={name}
+                                    name="name"
+                                    id="name"
+                                    placeholder="Nome"
+                                    onChange={(ev) => this.onChangeInput("name", ev)} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="telefone">Telefone</Label>
+                                <Input
+                                    type="text"
+                                    value={telefone}
+                                    name="telefone"
+                                    id="telefone"
+                                    placeholder="telefone"
+                                    onChange={(ev) => this.onChangeInput("telefone", ev)} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="name">E-mail</Label>
                                 <Input
                                     type="email"
                                     value={email}
@@ -57,6 +79,7 @@ class Login extends Component {
                                     placeholder="E-mail do usuário"
                                     onChange={(ev) => this.onChangeInput("email", ev)} />
                             </FormGroup>
+
                             <FormGroup>
                                 <Label for="senha">Senha</Label>
                                 <Input
@@ -71,9 +94,9 @@ class Login extends Component {
                             <Button
                                 color="primary btn-block"
                                 size="lg"
-                                onClick={() => this.handleLogin()}>Acessar
+                                onClick={() => this.handleCadastrar()}>Cadastrar
                             </Button>
-                            <Link className="dropdown-item" to="/cadastro">Cadastrar</Link>
+                            <Link className="dropdown-item" to="/">Voltar</Link>
                         </Form>
                     </div>
                 </div>

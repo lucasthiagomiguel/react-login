@@ -7,12 +7,14 @@ import store from '../store/store'
 import { history } from '../history';
 
 import Login from '../pages/Login';
+import Cadastro from '../pages/Cadastro';
 import RecuperarSenha from '../pages/RecuperarSenha';
 import Dashboard from '../pages/Dashboard';
 import User from '../pages/User';
 
 import baseLogin from '../containers/login';
 import baseDashboard from '../containers/dashboard';
+import baseCadastro from '../containers/cadastro';
 
 export default function Routes() {
     return (
@@ -21,6 +23,7 @@ export default function Routes() {
             <BrowserRouter>
                 <Switch>
                     <Route path="/" exact component={baseLogin(Login)} />
+                    <Route path="/cadastro" exact component={baseCadastro(Cadastro)} />
                     <Route path="/recuperar-senha" exact component={baseLogin(RecuperarSenha)} />
                     <Route path="/dashboard" exact component={baseDashboard(Dashboard)} />
                     <Route path="/user" exact component={baseDashboard(User)} />
