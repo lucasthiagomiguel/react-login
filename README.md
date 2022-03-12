@@ -1,36 +1,5 @@
-COMO RODAR O PROJETO BAIXADO
-//Instalar as dependencias
-npm install
+para rodar o projeto, primeiro veja se tem o node instalado na sua maquina
+depois na raiz do projeto rode o comando nom install, apos instalar todas as dependencia,
+rode npm run start e vai iniciar o projeto
 
-//Iniciar o servidor
-npm start
-
-
-SEQUENCIA EXECUTADAS E BIBLIOTECAS INSTALADAS DURANTE O CURSO
-//Criar o projeto React
-npx create-react-app my-app
-
-//Acessar o diretório do projeto
-cd my-app
-
-//Iniciar o servidor
-npm start
-
-//Abrir o projeto no Visual Studio Code
-code .
-
-//Instalar o gerenciador de rotas
-npm install --save react-router-dom
-
-//Permite gerenciar facilmente o histórico de navegação
-npm install --save history
-
-//Instalar o Bootstrap utilizando reactstrap: https://reactstrap.github.io/
-npm install --save bootstrap
-npm install --save reactstrap
-
-//Redux compartilha estados entre componentes
-npm install --save redux react-redux redux-thunk
-
-//Realizar chamada para API
-npm install --save axios
+depois va no arquivo que esta localizado em config/index, e troca a primeira url apontando a porta da api para que rode o projeto 
