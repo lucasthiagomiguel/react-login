@@ -1,46 +1,56 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import AlertDanger from '../../components/AlertDanger';
 
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions';
+import * as actions from '../../store/actions/users';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import AlertDanger from "../../components/AlertDanger";
+import AlertSuccess from "../../components/AlertSuccess";
+import validator from 'validator';
+import MaskedInput from 'react-text-mask';
 
-class Login extends Component {
+class CadUser extends Component {
 
     state = {
-        name:"",
-        telefone:"",
+        name: "",
         email: "",
+        telefone:"",
         senha: "",
-        erro: ""
+        erro: "",
+        success: "",
     }
 
     onChangeInput = (field, ev) => {
         this.setState({ [field]: ev.target.value });
     }
 
-    handleCadastrar() {
-        const {name,telefone, email, senha } = this.state;
-
-        if (!this.validade()) return;
-        this.props.handleCadastrar({ name,telefone, email, senha  }, (err) => {
-            //console.log(err);
-            this.setState({erro: {message: err.erro.message}});
+    cadUser() {
+        const { name, email,telefone, senha } = this.state;
+        if(!this.validate()) return;
+        this.props.postUser({name, email,telefone, senha}, (err) =>{
+            if(err.erro.status == "error"){
+                this.setState({erro: {message: err.erro.message}});
+                this.setState({success: ""});
+                console.log(err.erro.status);
+            }else{
+                this.setState({success: "Cadastrado com sucesso"});
+                this.setState({erro: ""});
+            }
         })
     }
 
-    validade() {
-        const { email, senha } = this.state;
-
-        if (!email) return this.setState({ erro: { message: "Preencha o campo e-mail!" }})
-        if (!senha) return this.setState({ erro: {message: "Preencha o campo senha!" }})
-
+    validate(){
+        const { name, email,telefone, senha } = this.state;
+        if(!name) return this.setState({erro:{message: "Preencha o campo nome"}});
+        if(!email) return this.setState({erro:{message: "Preencha o campo email"}});
+        if(!validator.isEmail(email)) return this.setState({erro:{message: "Preencha com email valido"}});
+        if(!senha) return this.setState({erro:{message: "Preencha o campo senha"}});
+        if(senha.length < 6 ) return this.setState({erro:{message: "A senha precisa ter no minimo 6 caracteres"}});
         return true;
     }
 
     render() {
-        const {name,telefone, email, senha, erro } = this.state;
+        const { name, email, telefone, senha, erro, success} = this.state;
         return (
             <>
 
@@ -49,6 +59,7 @@ class Login extends Component {
                         <Form className="form-signin text-center">
                             <h1 className="h3 mb-3 font-weight-normal">Cadastrar</h1>
                             <AlertDanger erros={erro} />
+                            <AlertSuccess erros={success} />
                             <FormGroup>
                                 <Label for="name">Nome</Label>
                                 <Input
@@ -61,12 +72,15 @@ class Login extends Component {
                             </FormGroup>
                             <FormGroup>
                                 <Label for="telefone">Telefone</Label>
-                                <Input
+                                    <MaskedInput
                                     type="text"
+                                    mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                                    className="form-control"
+                                    placeholder="Telefone"
+                                    guide={false}
                                     value={telefone}
                                     name="telefone"
                                     id="telefone"
-                                    placeholder="telefone"
                                     onChange={(ev) => this.onChangeInput("telefone", ev)} />
                             </FormGroup>
                             <FormGroup>
@@ -87,16 +101,22 @@ class Login extends Component {
                                     value={senha}
                                     name="senha"
                                     id="senha"
-                                    placeholder="Senha do usuário"
+                                    placeholder="Senha deve ter no minimo 6 caracteres"
                                     onChange={(ev) => this.onChangeInput("senha", ev)} />
                             </FormGroup>
 
                             <Button
                                 color="primary btn-block"
                                 size="lg"
-                                onClick={() => this.handleCadastrar()}>Cadastrar
+                                onClick={() => this.cadUser()}>Cadastrar
                             </Button>
-                            <Link className="dropdown-item" to="/">Voltar</Link>
+                            <Link to="/">
+                                <Button
+                                    color="btn btn-outline-info  btn-block mt-2"
+                                    size="lg"
+                                   >Voltar
+                                </Button>
+                            </Link>
                         </Form>
                     </div>
                 </div>
@@ -105,4 +125,4 @@ class Login extends Component {
     }
 }
 
-export default connect(null, actions)(Login);
+export default connect(null, actions)(CadUser);

@@ -32,9 +32,8 @@ class User extends Component {
 
     render() {
         var usuarios = [];
-        var paginas = [];
         if (this.props.usuarios) usuarios = this.props.usuarios.message.results
-        if (this.props.usuarios) paginas = this.props.usuarios.message
+        
 
         
         

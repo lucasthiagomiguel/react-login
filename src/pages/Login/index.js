@@ -73,7 +73,14 @@ class Login extends Component {
                                 size="lg"
                                 onClick={() => this.handleLogin()}>Acessar
                             </Button>
-                            <Link className="dropdown-item" to="/cadastro">Cadastrar</Link>
+                            <Link to="/cadastro">
+                                <Button
+                                    color="btn btn-outline-success  btn-block mt-2"
+                                    size="lg"
+                                   >Cadastrar
+                                </Button>
+                            </Link>
+
                         </Form>
                     </div>
                 </div>
