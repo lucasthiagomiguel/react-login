@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import AlertDanger from '../../components/AlertDanger';
+import AlertSuccess from '../../components/AlertSuccess';
 
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
@@ -11,11 +12,15 @@ class Login extends Component {
     state = {
         email: "",
         senha: "",
-        erro: ""
+        erro: "",
+        msg: ""
     }
 
     onChangeInput = (field, ev) => {
         this.setState({ [field]: ev.target.value });
+    }
+    componentDidMount() {
+        this.getCadastro();
     }
 
     handleLogin() {
@@ -36,9 +41,14 @@ class Login extends Component {
 
         return true;
     }
+    getCadastro(){
+        if (this.props.location.state) {
+            this.setState({ msg: this.props.location.state.msg });
+        }
+    }
 
     render() {
-        const { email, senha, erro } = this.state;
+        const { email, senha, erro,msg } = this.state;
         return (
             <>
 
@@ -47,6 +57,7 @@ class Login extends Component {
                         <Form className="form-signin text-center">
                             <h1 className="h3 mb-3 font-weight-normal">Login</h1>
                             <AlertDanger erros={erro} />
+                            {msg ? <AlertSuccess erros={msg}/> : ""}
                             <FormGroup>
                                 <Label for="email">Usuário</Label>
                                 <Input

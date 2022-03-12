@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link ,Redirect} from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/users';
@@ -18,6 +18,7 @@ class CadUser extends Component {
         senha: "",
         erro: "",
         success: "",
+        formSuccess:false
     }
 
     onChangeInput = (field, ev) => {
@@ -35,6 +36,7 @@ class CadUser extends Component {
             }else{
                 this.setState({success: "Cadastrado com sucesso"});
                 this.setState({erro: ""});
+                this.setState({ formSuccess: true });
             }
         })
     }
@@ -50,7 +52,15 @@ class CadUser extends Component {
     }
 
     render() {
-        const { name, email, telefone, senha, erro, success} = this.state;
+        const { name, email, telefone, senha, erro, success,formSuccess} = this.state;
+
+        if (formSuccess) {
+            return <Redirect to={{
+                pathname: '/',
+                state: { msg: 'Usuário cadastrado com sucesso!' }
+            }} />
+        }
+
         return (
             <>
 
