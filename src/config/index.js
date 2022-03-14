@@ -1,1 +1,1 @@
-export const api = (process.env.PUBLIC_URL) ? "" : "http://localhost:3333";
+export const api = "https://api-teste-type.herokuapp.com";

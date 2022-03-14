@@ -9,12 +9,12 @@ const baseLogin = Component => {
         componentDidMount(){
             const {logado, getUser, history} = this.props;
             getUser();
-            if(logado) return history.replace("/dashboard");
+            if(logado) return history.replace("/user");
         }
 
         componentDidUpdate(nextProps){
             const {history} = this.props;
-            if( !nextProps.logado) return history.replace("/dashboard");
+            if( !nextProps.logado) return history.replace("/user");
         }
         
         render(){
