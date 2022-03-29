@@ -5,6 +5,7 @@ import AlertSuccess from '../../components/AlertSuccess';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import logoFast from '../../assets/icones/logo-fast.webp';
+import logoEcovia from '../../assets/icones/logos-ecovia.webp';
 class Login extends Component {
 
     state = {
@@ -51,7 +52,8 @@ class Login extends Component {
             <>
                 <Container fluid>
                     <Row>
-                        <Col className='d-none d-md-block col-eco'>
+                        <Col className='d-none d-md-block col-eco d-md-flex flex-md-column justify-content-md-center align-items-md-center'>
+                            <img className='img-fluid' src={logoEcovia} alt="" />
                         </Col>
                         <Col className='col-login p-0' >
                             <div className="container-form">

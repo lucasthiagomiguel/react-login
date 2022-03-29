@@ -8,7 +8,7 @@ body {
     flex-direction: row !important;
 }
 .sidebar{
-    background-color: #222c3c;
+    background-color: #007451;
     min-width: 250px;
     max-width: 250px;
     min-height: calc(100vh - 56px);

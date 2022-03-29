@@ -3,7 +3,7 @@
   background: url('../../assets/fundo/fundo.webp') no-repeat;
   height: 100vh;
   background-position: center;
-  
+  background-size: cover;
 }
 .container-form {
   height: 100%;
@@ -70,4 +70,7 @@ h1{
   position: absolute;
   bottom: 0;
   margin-bottom: 32px;
+}
+.col-eco{
+  background: #fff;
 }
