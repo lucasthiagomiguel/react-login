@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Form, FormGroup, Input, Button, Container,Row,Col} from 'reactstrap';
 import AlertDanger from '../../components/AlertDanger';
 import AlertSuccess from '../../components/AlertSuccess';
-
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
-
+import logoFast from '../../assets/icones/logo-fast.webp';
 class Login extends Component {
 
     state = {
@@ -51,50 +49,52 @@ class Login extends Component {
         const { email, senha, erro,msg } = this.state;
         return (
             <>
+                <Container fluid>
+                    <Row>
+                        <Col className='d-none d-md-block col-eco'>
+                        </Col>
+                        <Col className='col-login p-0' >
+                            <div className="container-form">
+                                <div className="login">
+                                    <Form className="form-signin">
+                                        <h1 className="h3 mb-3 font-weight-normal">LOGIN</h1>
+                                        <AlertDanger erros={erro} />
+                                        {msg ? <AlertSuccess erros={msg}/> : ""}
+                                        <FormGroup className='border-top'>
+                                            <Input
+                                                type="email"
+                                                value={email}
+                                                name="email"
+                                                id="email"
+                                                placeholder="Usuário"
+                                                onChange={(ev) => this.onChangeInput("email", ev)} />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <Input
+                                                type="password"
+                                                value={senha}
+                                                name="senha"
+                                                id="senha"
+                                                placeholder="Senha"
+                                                onChange={(ev) => this.onChangeInput("senha", ev)} />
+                                        </FormGroup>
 
-                <div className="container-form">
-                    <div className="login card shadow">
-                        <Form className="form-signin text-center">
-                            <h1 className="h3 mb-3 font-weight-normal">Login</h1>
-                            <AlertDanger erros={erro} />
-                            {msg ? <AlertSuccess erros={msg}/> : ""}
-                            <FormGroup>
-                                <Label for="email">Usuário</Label>
-                                <Input
-                                    type="email"
-                                    value={email}
-                                    name="email"
-                                    id="email"
-                                    placeholder="E-mail do usuário"
-                                    onChange={(ev) => this.onChangeInput("email", ev)} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="senha">Senha</Label>
-                                <Input
-                                    type="password"
-                                    value={senha}
-                                    name="senha"
-                                    id="senha"
-                                    placeholder="Senha do usuário"
-                                    onChange={(ev) => this.onChangeInput("senha", ev)} />
-                            </FormGroup>
-
-                            <Button
-                                color="primary btn-block"
-                                size="lg"
-                                onClick={() => this.handleLogin()}>Acessar
-                            </Button>
-                            <Link to="/cadastro">
-                                <Button
-                                    color="btn btn-outline-success  btn-block mt-2"
-                                    size="lg"
-                                   >Cadastrar
-                                </Button>
-                            </Link>
-
-                        </Form>
-                    </div>
-                </div>
+                                        <Button
+                                            color=" btn-block"
+                                            size="lg"
+                                            onClick={() => this.handleLogin()}>ENTRAR
+                                        </Button>
+                                    </Form>
+                                </div>
+                                <div className="logo-fast">
+                                    <img src={logoFast} alt="" />
+                                </div>
+                            </div>
+                            
+                        </Col>
+                    </Row>
+                </Container>
+               
             </>
         )
     }
