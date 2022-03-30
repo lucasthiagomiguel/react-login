@@ -1,0 +1,33 @@
+.box-operation{
+    height: 100vh;
+}
+.logo-ecopistas img{
+    width: 200px;
+}
+.box-ecopistas{
+    max-width: 828px;
+}
+.btn-eco a{
+    padding: 8px 33px;
+    border: 1px solid #04B540;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+}
+.btn-eco p{
+    background: #04B540;
+    color: #fff;
+    max-width: 32%;
+    padding: 4px 8px;
+    border-radius: 7px;
+}
+.voltar{
+    color: #04B540;
+    
+}
+.editar{
+    background: #04B540;
+    color: #fff;
+    margin-left: 37px;
+}
