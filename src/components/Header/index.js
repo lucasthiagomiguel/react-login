@@ -1,8 +1,6 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
-
-import { Navbar, Nav, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
+import { Navbar, Nav } from 'reactstrap';
 
 import '../../styles/menu/index.css';
 

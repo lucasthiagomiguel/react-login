@@ -34,12 +34,12 @@ class Operation extends Component {
                     <img className='img-fluid ml-2' src={linha} alt="" />
                 <Container className='mt-5 pt-5 btn-eco'>
                     <Row>
-                        <Col className=''>
+                        <Col className='p-0'>
                             <h2>Setup View</h2>
                             <p><strong> Adquirente em Operação:</strong> Granito </p>
                             <p><strong>URL:</strong> http://gateway.granitopagamentos.com.br</p>
                             <Link className='voltar' to="/">VOLTAR</Link>
-                            <Link className='editar' to="/">EDITAR</Link>
+                            <Link className='editar' to="/editar">EDITAR</Link>
                             
                         </Col>
                     </Row>

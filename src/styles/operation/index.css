@@ -18,7 +18,7 @@
 .btn-eco p{
     background: #04B540;
     color: #fff;
-    max-width: 32%;
+    width: 100%;
     padding: 4px 8px;
     border-radius: 7px;
 }
@@ -30,4 +30,10 @@
     background: #04B540;
     color: #fff;
     margin-left: 37px;
+}
+
+@media (min-width: 768px) {
+    .btn-eco p{
+        width: 600px;
+    }
 }
