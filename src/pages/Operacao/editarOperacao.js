@@ -142,8 +142,8 @@ class Operation extends Component {
                                 </FormGroup>
                             </Form>
                             
-                            <Link className='voltar' to="/">VOLTAR</Link>
-                            <Link className='editar' to="/">EDITAR</Link>
+                            <Link className='voltar' to="/">CANCELAR</Link>
+                            <Link className='editar' to="/">SALVAR</Link>
                             
                         </Col>
                     </Row>
