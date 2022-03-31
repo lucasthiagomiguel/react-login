@@ -1,0 +1,15 @@
+.img-rodape{
+    background: #fff;
+    position: relative;
+}
+@media (min-width: 998px) {
+    .img-rodape::before{
+        content: "";
+        background: #E5E5E5;
+        width: 76%;
+        height: 2px;
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 27px;
+        }
+}

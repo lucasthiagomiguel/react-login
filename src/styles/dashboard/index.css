@@ -1,6 +1,9 @@
 body {
     background-color: #eaeef3 !important;
 }
+.d-flex{
+    background: #FFF;
+}
 .menu-header{
     color: #FFF !important;
 }
