@@ -7,7 +7,11 @@ import '../../styles/operation/index.css';
 class Operation extends Component {
 
     state = {
-    
+        adquirente: "",
+        url: "",
+        motivo:"",
+        textArea: "",
+        formSuccess:false
     }
 
     componentDidMount() {
@@ -17,9 +21,17 @@ class Operation extends Component {
     componentDidUpdate(nextProps) {
         
     }
-    
+    validate(){
+        const { adquirente,url,motivo,textArea } = this.state;
+        if(!adquirente) return this.setState({erro:{message: "Preencha o campo adquirente"}});
+        if(!url) return this.setState({erro:{message: "Preencha o campo url"}});
+        if(!motivo) return this.setState({erro:{message: "Preencha o campo motivo"}});
+        if(!textArea) return this.setState({erro:{message: "Preencha o campo motivo"}});
+        return true;
+    }
 
     render() {
+        const { adquirente, url, motivo, textArea,formSuccess} = this.state;
         return (
             <>
             <div className="box-operation">
@@ -41,6 +53,7 @@ class Operation extends Component {
                                     <Label
                                     for="exampleSelect"
                                     sm={2}
+
                                     >
                                     Adquirente
                                     </Label>
@@ -50,20 +63,8 @@ class Operation extends Component {
                                         name="select"
                                         type="select"
                                     >
-                                        <option>
-                                        1
-                                        </option>
-                                        <option>
-                                        2
-                                        </option>
-                                        <option>
-                                        3
-                                        </option>
-                                        <option>
-                                        4
-                                        </option>
-                                        <option>
-                                        5
+                                        <option value={adquirente}>
+                                        Granito
                                         </option>
                                     </Input>
                                     </Col>
@@ -77,24 +78,13 @@ class Operation extends Component {
                                     </Label>
                                     <Col sm={10}>
                                     <Input
-                                        id="exampleSelect"
-                                        name="select"
+                                        id="url"
+                                        name="url"
                                         type="select"
+                                        
                                     >
-                                        <option>
-                                        1
-                                        </option>
-                                        <option>
-                                        2
-                                        </option>
-                                        <option>
-                                        3
-                                        </option>
-                                        <option>
-                                        4
-                                        </option>
-                                        <option>
-                                        5
+                                        <option value={url}>
+                                            http://gateway.granitopagamentos.com.br
                                         </option>
                                     </Input>
                                     </Col>
@@ -112,21 +102,10 @@ class Operation extends Component {
                                         name="select"
                                         type="select"
                                     >
-                                        <option>
-                                        1
+                                        <option value={motivo}>
+                                        Parou de funcionar 
                                         </option>
-                                        <option>
-                                        2
-                                        </option>
-                                        <option>
-                                        3
-                                        </option>
-                                        <option>
-                                        4
-                                        </option>
-                                        <option>
-                                        5
-                                        </option>
+                                        
                                     </Input>
                                     </Col>
                                 </FormGroup>
@@ -137,6 +116,7 @@ class Operation extends Component {
                                         id="exampleText"
                                         name="text"
                                         type="textarea"
+                                        
                                     />
                                     </Col>
                                 </FormGroup>
